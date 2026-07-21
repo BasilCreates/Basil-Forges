@@ -1,0 +1,8 @@
+{
+    "defaultStats": [
+        { "statName": "Audience Appeal", "statAmount": 100 },
+        { "statName": "TV Potential", "statAmount": 100 },
+        { "statName": "Toxicity", "statAmount": 100 },
+        { "statName": "Talent", "statAmount": 100 }
+    ]
+}

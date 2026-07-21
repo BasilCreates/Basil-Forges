@@ -1,0 +1,8 @@
+{
+    "defaultStats": [
+        { "statName": "Stat 1", "statAmount": 100 },
+        { "statName": "Stat 2", "statAmount": 100 },
+        { "statName": "Stat 3", "statAmount": 100 },
+        { "statName": "Stat 4", "statAmount": 100 }
+    ]
+}
