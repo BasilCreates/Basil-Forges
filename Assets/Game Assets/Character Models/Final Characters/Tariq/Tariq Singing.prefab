@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6349074039950693283
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_Name
+      value: Tariq Singing
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_TagString
+      value: Tariq
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: af5107fa0c614d545ab2649f0fcea611, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2770676905336235092}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7125960599080942679}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5924448510061724625}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2705677169871731566}
+  m_SourcePrefab: {fileID: 100100000, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+--- !u!1 &6115071231066074866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 96a9d03fcf075ee4ca6909e44319c26c, type: 3}
+  m_PrefabInstance: {fileID: 6349074039950693283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2770676905336235092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115071231066074866}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!114 &7125960599080942679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115071231066074866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3355b828f44475f4d8aeb47a95105473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultStats: []
+--- !u!114 &5924448510061724625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115071231066074866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d08676fb6b03d4dbf686f26b3d8fdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModifyList: []
+--- !u!114 &2705677169871731566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115071231066074866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51627686da567a44495255a6bd959a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Tariq Al-Rashid
+  isEliminated: 0

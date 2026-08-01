@@ -12,41 +12,61 @@ public class CardSelectionManager : MonoBehaviour
     public AudioSource buttonSound1;
     public AudioSource buttonSound2;
 
+    [Header("Selection Panels")]
+    public GameObject targetSelectionPanel;
+    public GameObject cardSelectionPanel;
 
-    private int currentIndex = 0;
+    // We use this to track who we are currently hovering over, so we don't spam the sound every frame
+    private string currentHoveredTag = "";
 
-    // Show only the first card on start
+    // Show only the first card on start - UPDATED to hide all cards initially
     void Start()
     {
-        UpdateDisplay();
+        HideAllCards();
     }
 
-    // Show the previous corruption card
-    public void OnLeftArrow()
+    // Called by Raycast script when hovered
+    public void HoverCard(string cardTag)
     {
-        currentIndex--;
-        if (currentIndex < 0) currentIndex = corruptionCards.Count - 1;
+        // If we are already hovering over this card, do nothing
+        if (currentHoveredTag == cardTag) return;
+
+        currentHoveredTag = cardTag;
+        Debug.Log("Hovering card via raycast: " + cardTag);
+
         buttonSound2.Play();
-        UpdateDisplay();
+        HideAllCards(); // Clear all cards first
+
+        // Find and turn on the specific card matching the clicked card's tag
+        foreach (GameObject card in corruptionCards)
+        {
+            if (card.tag == cardTag)
+            {
+                card.SetActive(true);
+                return;
+            }
+        }
+
+        Debug.LogWarning("No UI card found matching the tag: " + cardTag);
     }
 
-    // Show the next corruption card
-    public void OnRightArrow()
+    // Called by Raycast script when we look away
+    public void ClearHover()
     {
-        currentIndex++;
-        if (currentIndex >= corruptionCards.Count) currentIndex = 0;
-        buttonSound2.Play();
-        UpdateDisplay();
+        // If nothing is open, do nothing
+        if (currentHoveredTag == "") return;
+
+        currentHoveredTag = ""; // Reset the tracker
+        HideAllCards(); // Hide the card
     }
 
-    //updates the view so you can scroll through all cards
-    void UpdateDisplay()
+    // updates the view so you can scroll through all cards - UPDATED to just hide them
+    void HideAllCards()
     {
         foreach (GameObject card in corruptionCards)
         {
             card.SetActive(false);
         }
-        corruptionCards[currentIndex].SetActive(true);
     }
 
     // Confirms the clicked card as your choice
@@ -69,8 +89,14 @@ public class CardSelectionManager : MonoBehaviour
             return;
         }
 
-        // Otherwise open target selection
+        // Otherwise open target selection and explicitly populate the list
         TargetSelectionManager targetManager = FindObjectOfType<TargetSelectionManager>();
-        targetManager.OpenTargetSelection();
+        if (targetManager != null)
+        {
+            targetManager.OpenTargetSelection(); // This populates availableTargets and enables models
+        }
+
+        if (cardSelectionPanel != null) cardSelectionPanel.SetActive(false);
+        if (targetSelectionPanel != null) targetSelectionPanel.SetActive(true);
     }
 }

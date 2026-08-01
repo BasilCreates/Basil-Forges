@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public int movementSpeed = 10;
     public int lookSpeed = 20;
     public Rigidbody rb;
+
     [Header("Camera")]
     public Transform cameraTransform;
     private Vector3 move;

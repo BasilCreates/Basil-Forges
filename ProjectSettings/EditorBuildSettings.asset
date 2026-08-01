@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Game Menu.unity
+    guid: 76a55dd1979299a4aada1178da68b600
+  - enabled: 1
+    path: Assets/Scenes/Producer Office.unity
+    guid: b0b9af0e9b797f44d9cdc912ce7ff332
+  - enabled: 1
+    path: Assets/Scenes/All Level Choosing.unity
+    guid: fc16c49c079c7da45a01b4a8de2035d3
+  - enabled: 1
+    path: Assets/Scenes/Contestant Stage.unity
+    guid: da4efdae198b4b04497207a7dcbd0287
+  - enabled: 1
+    path: Assets/Scenes/Final Vote.unity
+    guid: 55d65d0859964d442909d6942bc098e4
+  - enabled: 1
+    path: Assets/Scenes/Coaching.unity
+    guid: 5a08d8b5023e78f47bcc381ee56051ca
+  - enabled: 1
+    path: Assets/Scenes/Redirect.unity
+    guid: ba6a8a394bef5c340856c57f65e2c5e8
+  - enabled: 1
+    path: Assets/Scenes/Sympathy Arc.unity
+    guid: ad40fe84091061b49848c6c4dfd6a6ba
+  - enabled: 1
+    path: Assets/Scenes/Vote Bot Mission.unity
+    guid: a82300948bc5fa141a1043a18e9e29a0
+  m_configObjects: {}

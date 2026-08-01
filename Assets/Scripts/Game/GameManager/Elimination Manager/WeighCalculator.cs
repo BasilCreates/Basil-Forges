@@ -88,7 +88,6 @@ public class WeightCalculator : MonoBehaviour
     }
 
 
-    // GET ELIMINATED
     // Returns the tag of whoever has the lowest vote score
 
     public string GetEliminated()
