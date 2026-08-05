@@ -18,6 +18,12 @@ public class RedirectManager : MonoBehaviour
     [Header("Sounds UI")]
     public AudioSource buttonSound;
 
+
+    public void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     // Picks a random newspaper, updates name and shows correct face
     void Start()
     {

@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
     public float fadeDuration = 1f;
 
     public GameObject menuPanel;
-    public GameObject settingPanel;
+    public GameObject aboutPanel;
     public GameObject splashPanel;
     public GameObject tutorialPanel;
     public float splashDuration = 3f;
@@ -61,13 +61,13 @@ public class MenuManager : MonoBehaviour
     public void OnSettingsClicked()
     {
         menuPanel.SetActive(false);
-        settingPanel.SetActive(true);
+        aboutPanel.SetActive(true);
         buttonSound.Play();
     }
 
     public void onReturnClicked()
     {
-        settingPanel.SetActive(false);
+        aboutPanel.SetActive(false);
         menuPanel.SetActive(true);
         buttonSound.Play();
     }

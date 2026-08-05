@@ -7,7 +7,7 @@ public class PauseManager : MonoBehaviour
 {
     [Header("Settings Parameters")]
     public GameObject pausePanel;
-    public GameObject settingsPanel;
+    public GameObject aboutPanel;
     public GameObject gameUI;
     private bool isPaused = false;
 
@@ -62,11 +62,11 @@ public class PauseManager : MonoBehaviour
     }
 
     //When you open up the settings
-    public void OnSettingsClicked()
+    public void OnAboutClicked()
     {
         pausePanel.SetActive(false );
         gameUI.SetActive( false );
-        settingsPanel.SetActive(true);
+        aboutPanel.SetActive(true);
         Time.timeScale = 0f;
         isPaused=true;
 
@@ -75,7 +75,7 @@ public class PauseManager : MonoBehaviour
     //When you click the return button in settings
     public void OnReturnClicked()
     {
-        settingsPanel.SetActive(false);
+        aboutPanel.SetActive(false);
         gameUI.SetActive(true);
         pausePanel.SetActive(true);
         Time.timeScale=0f;

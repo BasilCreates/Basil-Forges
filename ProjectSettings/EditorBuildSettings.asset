@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Vote Bot Mission.unity
     guid: a82300948bc5fa141a1043a18e9e29a0
+  - enabled: 1
+    path: Assets/Scenes/Elimination Montage.unity
+    guid: 195993419ff8b5f4b975a3969360ebfa
+  - enabled: 1
+    path: Assets/Scenes/Caught Scene.unity
+    guid: 4a3d36985cbf0a142abe3ae2cc505d09
+  - enabled: 1
+    path: Assets/Scenes/Win Montage.unity
+    guid: 834ea9631c1a0934382b50e0faee475c
   m_configObjects: {}

@@ -1,51 +1,101 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject week1Panel;
-    public GameObject week2to5Panel;
+    [Header("UI Canvases")]
+    public GameObject characterPickCanvas;
+    public GameObject cardSelectionCanvas;
+    public GameObject targetSelectionCanvas;
+
+    [Header("UI Text (Inspector Assign)")]
     public Text weekTitleText;
-    public List<string> roundCaptions;
-    public Text captionText;
+    public Text chosenCharacterText; // Inspector assign your target UI text here
+
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
+        // Check if it's the first round/week
         if (GameManager.Instance.currentRound == 1)
         {
-            week1Panel.SetActive(true);
-            week2to5Panel.SetActive(false);
-            Debug.Log("Loaded week 1");
+            // First week: Show character selection, hide card and target selection
+            if (characterPickCanvas != null) characterPickCanvas.SetActive(true);
+            if (cardSelectionCanvas != null) cardSelectionCanvas.SetActive(false);
+            if (targetSelectionCanvas != null) targetSelectionCanvas.SetActive(false);
+
+            Debug.Log("Loaded Week 1: Character Pick");
         }
         else
         {
-            week1Panel.SetActive(false);
-            week2to5Panel.SetActive(true);
-            Debug.Log("Loaded the next week!");
+            // Future rounds: Hide character pick, start directly from card selection
+            if (characterPickCanvas != null) characterPickCanvas.SetActive(false);
+            if (cardSelectionCanvas != null) cardSelectionCanvas.SetActive(true);
+            if (targetSelectionCanvas != null) targetSelectionCanvas.SetActive(false);
+
+            Debug.Log("Loaded Week " + GameManager.Instance.currentRound + ": Skipping Character Pick");
         }
+
+        RefreshUI();
+    }
+
+    void OnEnable()
+    {
+        RefreshUI();
+    }
+
+    // Call this method whenever you transition to a new screen or open the target UI!
+    public void RefreshUI()
+    {
+        UpdateWeekText();
+        UpdateChosenCharacterText();
+    }
+
+    // Updates all week text fields
+    public void UpdateWeekText()
+    {
+        if (GameManager.Instance == null) return;
+
+        int currentWeek = Mathf.Clamp(GameManager.Instance.currentRound, 1, 5);
+        string weekString = "Week " + currentWeek;
 
         if (weekTitleText != null)
         {
-            weekTitleText.text = "Week " + GameManager.Instance.currentRound;
+            weekTitleText.text = weekString;
         }
-        TextUpdate();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void TextUpdate()
-    {
-        if (captionText != null && GameManager.Instance.currentRound <= roundCaptions.Count)
+        GameObject[] weekTextObjects = GameObject.FindGameObjectsWithTag("Current Week");
+        foreach (GameObject obj in weekTextObjects)
         {
-            captionText.text = roundCaptions[GameManager.Instance.currentRound - 1];
+            Text uiText = obj.GetComponent<Text>();
+            if (uiText != null)
+            {
+                uiText.text = weekString;
+            }
+        }
+    }
+
+    // Updates the inspector-assigned field and any active objects tagged with "Character Picked"
+    public void UpdateChosenCharacterText()
+    {
+        if (GameManager.Instance == null) return;
+
+        string characterName = GameManager.Instance.chosenCharacter;
+        Debug.Log("LevelManager updating character text to: " + characterName);
+
+        // Update the inspector reference directly (works even if it starts inactive)
+        if (chosenCharacterText != null)
+        {
+            chosenCharacterText.text = characterName;
+        }
+
+        GameObject[] characterTextObjects = GameObject.FindGameObjectsWithTag("Character Picked");
+        foreach (GameObject obj in characterTextObjects)
+        {
+            Text uiText = obj.GetComponent<Text>();
+            if (uiText != null)
+            {
+                uiText.text = "Contestant Picked: " + characterName;
+            }
         }
     }
 }

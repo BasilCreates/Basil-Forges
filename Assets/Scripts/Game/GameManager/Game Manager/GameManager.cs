@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //Getting our song data and determining the song time
 [System.Serializable]
@@ -81,6 +82,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Call this whenever you want to modify suspicion and check if the player gets caught
+    public void AddSuspicion(int amount)
+    {
+        currentSuspicion += amount;
+
+        if (currentSuspicion > 150 && !suspicionLoss)
+        {
+            suspicionLoss = true;
+            SceneManager.LoadScene("Caught Scene");
+        }
+    }
+
+    // Call this whenever you assign the chosen character to update any UI text tagged with "Character Picked"
+    public void SetChosenCharacter(string characterName)
+    {
+        chosenCharacter = characterName;
+        UpdateChosenCharacterUI();
+    }
+
+    // Automatically finds all text objects with the tag "Character Picked" and updates them
+    public void UpdateChosenCharacterUI()
+    {
+        GameObject[] textObjects = GameObject.FindGameObjectsWithTag("Character Picked");
+        foreach (GameObject obj in textObjects)
+        {
+            Text uiText = obj.GetComponent<Text>();
+            if (uiText != null)
+            {
+                // You can customize the format string here (e.g., "My contestant: " + chosenCharacter)
+                uiText.text = "My contestant: " + chosenCharacter;
+            }
+        }
+    }
+
     // Checks if a character has already been eliminated this game
     public bool IsEliminated(string characterTag)
     {
@@ -128,10 +163,10 @@ public class GameManager : MonoBehaviour
         payoutResults.Clear();
         suspicionLoss = false;
         targetedCharacter = "";
+        UpdateChosenCharacterUI();
     }
 
-    // out the estimated prize money for a given character
-    // ---------------------------------------------------------------
+    // out the estimated prize money for a given charactef
     public float CalculatePayout(string characterTag)
     {
         GameObject character = GameObject.FindWithTag(characterTag);

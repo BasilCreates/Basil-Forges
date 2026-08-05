@@ -7,11 +7,24 @@ TagManager:
   - Card
   - TV
   - Start Button
+  - Priya
+  - Idris
+  - Tariq
+  - Amara
+  - Zarah
+  - Coaching
+  - Bad Edit
+  - Redirect
+  - Vote Bot
+  - Sympathy
+  - Shadow Cut
+  - Character Picked
+  - Current Week
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

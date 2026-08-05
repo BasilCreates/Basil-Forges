@@ -10,6 +10,8 @@ public class TVInteraction : MonoBehaviour
     [Header("Screen Parameters")]
     public GameObject offScreen; //our black screen
     public GameObject onScreen; //the on screen with our static mp4
+    public AudioSource tvSound;
+    public AudioSource buttonSound1;
 
     [Header("Fade Panel Parameters")]
     public Image fadePanel;
@@ -38,13 +40,14 @@ public class TVInteraction : MonoBehaviour
         Debug.Log("Hit the TV!");
         offScreen.SetActive(false); //turns off our black screen
         onScreen.SetActive(true); //turns on our screen with the static mp4
+        tvSound.Play(); //plays the audio
     }
 
     public void LevelStart()
     {
         
 
-        if(Input.GetKeyDown(KeyCode.Return) && !tvOn) //When Enter is clicked
+        if(Input.GetKeyDown(KeyCode.Return) && !tvOn) //When Enter is clicked this was for testing
         {
             Debug.Log("Hit the Button");
             tvOn = true;
@@ -55,6 +58,7 @@ public class TVInteraction : MonoBehaviour
 
     IEnumerator FadeIn()
     {
+        buttonSound1.Play();
         yield return new WaitForSeconds(waitToFade); //waits before fading
         float alpha = 0f;
 

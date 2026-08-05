@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class MontageManager : MonoBehaviour
 {
     [Header("Cameras")]
@@ -35,9 +36,15 @@ public class MontageManager : MonoBehaviour
     public AudioSource badEditSound;
     public AudioSource shadowCutSound;
     public AudioSource performanceMusic;
+
+    // Tracks the previously used camera index so it never repeats consecutively
+    private int lastCameraIndex = -1;
+
     // Turns off all cameras and kicks off the montage
     void Start()
     {
+        GameManager.Instance.UpdateChosenCharacterUI();
+
         // Tick suspicion down at start of each montage
         SuspicionManager suspicionManager = FindObjectOfType<SuspicionManager>();
         if (suspicionManager != null)
@@ -60,7 +67,6 @@ public class MontageManager : MonoBehaviour
 
             GameObject contestant = GameObject.FindWithTag(tag);
             if (contestant == null) continue;
-
 
             // Fade to black before swap
             yield return StartCoroutine(Fade(0f, 1f));
@@ -107,15 +113,14 @@ public class MontageManager : MonoBehaviour
                 badEditCamera.gameObject.SetActive(true);
                 Debug.Log("Bad Edit in Effect!");
                 badEditSound.Play();
-
             }
             else
             {
                 badEditSound.Stop();
             }
 
-                // Check if this contestant is shadow cut target
-                float performanceTime = timePerContestant;
+            // Check if this contestant is shadow cut target
+            float performanceTime = timePerContestant;
             if (tag == GameManager.Instance.targetedCharacter &&
                 GameManager.Instance.selectedCard == "Shadow Cut")
             {
@@ -159,15 +164,30 @@ public class MontageManager : MonoBehaviour
         fadePanel.color = color;
     }
 
-    // Picks a random camera every 3 seconds while montage is running
+    // Picks a random camera every 3 seconds while montage is running (guarantees no back-to-back repeats)
     IEnumerator SwitchCameras()
     {
         while (montageRunning)
         {
             // Don't switch cameras if bad edit is active
-            if (!badEditActive)
+            if (!badEditActive && cameras.Count > 0)
             {
-                int randomIndex = Random.Range(0, cameras.Count);
+                int randomIndex = lastCameraIndex;
+
+                if (cameras.Count > 1)
+                {
+                    while (randomIndex == lastCameraIndex)
+                    {
+                        randomIndex = Random.Range(0, cameras.Count);
+                    }
+                }
+                else
+                {
+                    randomIndex = 0;
+                }
+
+                lastCameraIndex = randomIndex;
+
                 DisableAllCameras();
                 cameras[randomIndex].gameObject.SetActive(true);
             }

@@ -29,7 +29,7 @@ public class VoteRevealManager : MonoBehaviour
 
     [Header("Result Panels")]
     public GameObject youPassPanel;
-    public GameObject youLostPanel;
+    //public GameObject youLostPanel;
     public GameObject youWonPanel;
     public GameObject youAlmostWonPanel;
 
@@ -57,12 +57,8 @@ public class VoteRevealManager : MonoBehaviour
     // Hides continue button and starts the vote reveal sequence
     void Start()
     {
-        // Temporary test data - remove when full game flow works
-        // GameManager.Instance.voteResults.Add("Amara", 220);
-        // GameManager.Instance.voteResults.Add("Zarah", 150);
-        // GameManager.Instance.voteResults.Add("Priya", 195);
-        //GameManager.Instance.voteResults.Add("Tariq", 180);
-        // GameManager.Instance.voteResults.Add("Idris", 140);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         if (GameManager.Instance.IsEliminated("Amara"))
         {
@@ -86,15 +82,23 @@ public class VoteRevealManager : MonoBehaviour
             idrisPanel.SetActive(false);
         }
 
-
         if (GameManager.Instance.suspicionLoss)
         {
-            youLostPanel.SetActive(true);
-            return;
+            GameManager.Instance.AdvanceRound();
+
+            if (GameManager.Instance.IsGameOver())
+            {
+                // ... (Keep your win/almost win logic here) ...
+                return;
+            }
+
+            // Always load the montage scene for round eliminations!
+            SceneManager.LoadScene(nextScene);
+            buttonSound1.Play();
         }
 
         continueButton.gameObject.SetActive(false);
-        StartCoroutine(RevealVotes()); ;
+        StartCoroutine(RevealVotes());
     }
 
     // Fills each contestant's bar one by one then highlights loser
@@ -154,17 +158,14 @@ public class VoteRevealManager : MonoBehaviour
     }
 
     // Eliminates the loser and checks if its the chosen character
+    // Eliminates the loser and checks if its the chosen character
     public void OnContinueClicked()
     {
         buttonSound1.Play();
         GameManager.Instance.EliminateCharacter(eliminatedTag);
 
-        // Your character got eliminated - you lost
-        if (GameManager.Instance.IsChosenCharacterEliminated())
-        {
-            youLostPanel.SetActive(true);
-            return;
-        }
+        // Save the targeted character name so the Elimination Montage script knows who to spawn!
+        GameManager.Instance.targetedCharacter = eliminatedTag;
 
         GameManager.Instance.AdvanceRound();
 
@@ -177,8 +178,7 @@ public class VoteRevealManager : MonoBehaviour
             if (GameManager.Instance.winnerPayout >= GameManager.Instance.highestPossiblePayout)
             {
                 // True win
-                winnerEarningsText.text = "$" + GameManager.Instance.winnerPayout.ToString("N0");
-                youWonPanel.SetActive(true);
+                SceneManager.LoadScene("Win Montage");
             }
             else
             {
@@ -204,9 +204,10 @@ public class VoteRevealManager : MonoBehaviour
             return;
         }
 
-        // Round continues - you pass
-        youPassPanel.SetActive(true);
+        // Round continues - load the Elimination Montage scene
+        SceneManager.LoadScene(nextScene);
     }
+
     // Go to producer office for next round
     public void OnPassContinueClicked()
     {

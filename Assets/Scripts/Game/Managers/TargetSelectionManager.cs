@@ -54,7 +54,14 @@ public class TargetSelectionManager : MonoBehaviour
             targetSelectionPanel.SetActive(true);
         }
 
-        // Reset the text display when opening
+        // --- UPDATED HERE: Tell LevelManager to update the chosen character text using its existing logic! ---
+        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        if (levelManager != null)
+        {
+            levelManager.UpdateChosenCharacterText();
+        }
+
+        // Reset the target text display when opening
         if (targetNameText != null)
         {
             targetNameText.text = "Current Target: None";
