@@ -1,5 +1,7 @@
 # Basil Forges
 
+**[▶ Play The Perfect Contestant on itch.io](https://jermaine-kihuha.itch.io/the-perfect-contestant)**
+
 A lightweight Unity framework for building and tuning probability-based reward systems, plus **The Perfect Contestant**, the game I made to prove it actually works.
 
 > Final Year Project (TP075060). Unity 2022.3.58f1, C#.
